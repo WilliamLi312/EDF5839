@@ -6,6 +6,19 @@
 <style>
 body { font-family: Arial; text-align: center; padding: 20px; }
 button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+.result-card { 
+  max-width: 500px; 
+  margin: 20px auto; 
+  padding: 20px; 
+  border: 2px solid #ddd; 
+  border-radius: 10px;
+}
+.result-image { 
+  width: 200px; 
+  height: 200px; 
+  margin: 20px auto;
+  border-radius: 10px;
+}
 </style>
 </head>
 
@@ -13,7 +26,7 @@ button { margin: 10px; padding: 10px 20px; font-size: 16px; }
 
 <h1>🎮 Teacher Type Test</h1>
 <div id="quiz"></div>
-<h2 id="result"></h2>
+<div id="result"></div>
 
 <script>
 const questions = [
@@ -97,15 +110,40 @@ function choose(letter){
 function showResult(){
   let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
 
-  let descriptions = {
-    Enforcer: "🚨 The Enforcer: You are strict, rule-focused, and maintain strong discipline.",
-    Softie: "💖 The Softie: You are caring, flexible, and prioritise student wellbeing.",
-    Stare: "👀 The Stare: You control the class with presence and silent authority.",
-    Fixer: "🛠️ The Fixer: You solve problems and support students practically."
+  let results = {
+    Enforcer: {
+      title: "🚨 The Enforcer",
+      description: "You are strict, rule-focused, and maintain strong discipline.",
+      image: "https://via.placeholder.com/200?text=Enforcer"
+    },
+    Softie: {
+      title: "💖 The Softie",
+      description: "You are caring, flexible, and prioritise student wellbeing.",
+      image: "https://via.placeholder.com/200?text=Softie"
+    },
+    Stare: {
+      title: "👀 The Stare",
+      description: "You control the class with presence and silent authority.",
+      image: "https://via.placeholder.com/200?text=Stare"
+    },
+    Fixer: {
+      title: "🛠️ The Fixer",
+      description: "You solve problems and support students practically.",
+      image: "https://via.placeholder.com/200?text=Fixer"
+    }
   };
 
+  let result = results[maxType];
+  let html = `
+    <div class="result-card">
+      <img src="${result.image}" alt="${maxType}" class="result-image">
+      <h2>${result.title}</h2>
+      <p>${result.description}</p>
+    </div>
+  `;
+
   document.getElementById("quiz").innerHTML = "";
-  document.getElementById("result").innerHTML = descriptions[maxType];
+  document.getElementById("result").innerHTML = html;
 }
 
 showQuestion();
