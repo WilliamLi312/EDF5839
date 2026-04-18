@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Teacher Type Test</title>
+<style>
+body { font-family: Arial; text-align: center; padding: 20px; }
+button { margin: 10px; padding: 10px 20px; font-size: 16px; }
+.hidden { display: none; }
+</style>
+</head>
+
+<body>
+
+<h1>🎮 Teacher Type Test</h1>
+<div id="quiz"></div>
+<h2 id="result"></h2>
+
+<script>
+const questions = [
+"1. How do you start a lesson?",
+"2. What do you do when students don’t understand?",
+"3. Preferred activity?",
+"4. Classroom management style?",
+"5. Homework style?",
+"6. What matters most?",
+"7. Use of technology?",
+"8. Who leads the class?",
+"9. Handling differences?",
+"10. Ideal classroom?"
+];
+
+const options = [
+["Explain content", "Guide thinking", "Use tech tools", "Focus on students"],
+["Explain again", "Guide differently", "Use AI/tools", "Help individually"],
+["Practice", "Group discussion", "Online tools", "Personal tasks"],
+["Strict control", "Shared rules", "System tools", "Understand students"],
+["Standard tasks", "Inquiry tasks", "Digital tasks", "Differentiated"],
+["Knowledge", "Thinking", "Technology", "Experience"],
+["Rarely", "Sometimes", "Often", "When needed"],
+["Teacher", "Interaction", "Technology", "Students"],
+["Same for all", "Group levels", "Use tech", "Individual support"],
+["Quiet", "Active", "Digital", "Student-focused"]
+];
+
+let index = 0;
+let scores = {
+  Traditional: 0,
+  Facilitator: 0,
+  Tech: 0,
+  Student: 0
+};
+
+function showQuestion() {
+  if(index >= questions.length){
+    showResult();
+    return;
+  }
+
+  let html = `<h2>${questions[index]}</h2>`;
+  ["A","B","C","D"].forEach((letter, i) => {
+    html += `<button onclick="choose('${letter}')">${letter}. ${options[index][i]}</button><br>`;
+  });
+
+  document.getElementById("quiz").innerHTML = html;
+}
+
+function choose(letter){
+  if(letter === "A") scores.Traditional++;
+  if(letter === "B") scores.Facilitator++;
+  if(letter === "C") scores.Tech++;
+  if(letter === "D") scores.Student++;
+
+  index++;
+  showQuestion();
+}
+
+function showResult(){
+  let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+  let descriptions = {
+    Traditional: "📚 Traditional Teacher: Focus on structure and knowledge.",
+    Facilitator: "🧩 Facilitator: Guide students to think and collaborate.",
+    Tech: "💻 Tech-Driven Teacher: Use technology to enhance learning.",
+    Student: "👩‍🏫 Student-Centred Teacher: Focus on student needs."
+  };
+
+  document.getElementById("quiz").innerHTML = "";
+  document.getElementById("result").innerHTML = descriptions[maxType];
+}
+
+// start
+showQuestion();
+</script>
+
+</body>
+</html>
