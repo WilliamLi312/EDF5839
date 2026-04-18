@@ -2,33 +2,107 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Teacher Type Test</title>
+<title>Teacher Personality Test</title>
+
 <style>
-body { font-family: Arial; text-align: center; padding: 20px; }
-button { margin: 10px; padding: 10px 20px; font-size: 16px; }
-.result-card { 
-  max-width: 500px; 
-  margin: 20px auto; 
-  padding: 20px; 
-  border: 2px solid #ddd; 
-  border-radius: 10px;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
-.result-image { 
-  width: 200px; 
-  height: 200px; 
+
+/* APP CONTAINER */
+.app {
+  width: 380px;
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+/* BUTTON */
+button {
+  width: 100%;
+  margin: 8px 0;
+  padding: 12px;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  cursor: pointer;
+  background: #f2f2f2;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: #dfe6ff;
+  transform: scale(1.02);
+}
+
+/* RESULT CARD */
+.result-card {
+  max-width: 320px;
   margin: 20px auto;
-  border-radius: 10px;
+  padding: 20px;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: pop 0.3s ease;
 }
+
+@keyframes pop {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.result-image {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 15px;
+  margin-bottom: 10px;
+}
+
+h1 { font-size: 22px; }
+h2 { font-size: 16px; }
+
 </style>
 </head>
 
 <body>
 
-<h1>🎮 Teacher Type Test</h1>
-<div id="quiz"></div>
-<div id="result"></div>
+<div class="app">
+
+  <!-- 🟢 HOME PAGE -->
+  <div id="home">
+    <h1>🎓 Teacher Personality Test</h1>
+
+    <p>Discover your teaching personality type.</p>
+
+    <p>
+      🚨 Enforcer<br>
+      💖 Softie<br>
+      👀 Stare<br>
+      🛠️ Fixer
+    </p>
+
+    <button onclick="startQuiz()">Start Test</button>
+  </div>
+
+  <!-- 🟡 QUIZ -->
+  <div id="quiz" style="display:none;"></div>
+
+  <!-- 🟣 RESULT -->
+  <div id="result"></div>
+
+</div>
 
 <script>
+
 const questions = [
 "1. A student is talking while you are teaching. What do you do?",
 "2. A student forgets homework.",
@@ -53,29 +127,30 @@ const questions = [
 ];
 
 const options = [
-["Give a warning", "Ignore and continue", "Silent stare", "Talk after class"],
-["Give penalty", "Accept excuse", "Look disappointed", "Help them catch up"],
-["Send them out", "Comfort them", "Observe quietly", "Solve the issue"],
-["Strict and controlled", "Relaxed and caring", "Quiet but firm", "Supportive and practical"],
-["Immediate consequence", "Give second chance", "Non-verbal warning", "Discuss solution"],
-["Stop and discipline", "Let it continue", "Use eye contact", "Redirect activity"],
+["Warning", "Ignore", "Silent stare", "Talk later"],
+["Penalty", "Excuse", "Disappointed", "Help"],
+["Send out", "Comfort", "Observe", "Solve"],
+["Strict", "Relaxed", "Firm silent", "Supportive"],
+["Consequence", "Second chance", "Eye contact", "Discuss"],
+["Stop class", "Let it go", "Stare", "Redirect"],
 ["Structured", "Flexible", "Calm", "Interactive"],
-["Push them harder", "Encourage gently", "Watch silently", "Provide strategies"],
-["Strict deadline", "Flexible deadline", "Silent judgement", "Offer support"],
-["Assert authority", "Stay calm", "Use stare", "Resolve calmly"],
-["Clear and strict", "Flexible", "Implied", "Practical"],
-["Call them out", "Let it go", "Stare", "Help refocus"],
-["Enforce rules", "Keep peace", "Stay silent", "Fix problem"],
-["Authority figure", "Friend/mentor", "Observer", "Problem-solver"],
-["You are strict", "You are kind", "You are intimidating", "You are helpful"],
-["Direct and critical", "Positive and gentle", "Minimal", "Constructive"],
+["Push harder", "Encourage", "Observe", "Support"],
+["Strict deadline", "Flexible", "Judgement", "Help"],
+["Authority", "Calm", "Stare", "Fix"],
+["Strict", "Flexible", "Implied", "Practical"],
+["Call out", "Ignore", "Stare", "Refocus"],
+["Enforce", "Peace", "Silent", "Solve"],
+["Authority", "Mentor", "Observer", "Fixer"],
+["Strict", "Kind", "Intimidating", "Helpful"],
+["Critical", "Positive", "Minimal", "Constructive"],
 ["Punish", "Forgive", "Stare", "Guide"],
 ["Discipline", "Wellbeing", "Control", "Improvement"],
 ["Orderly", "Warm", "Quiet", "Supportive"],
-["Follows rules", "Happy and comfortable", "Quiet", "Improving"]
+["Rule follower", "Comfortable", "Quiet", "Improving"]
 ];
 
 let index = 0;
+
 let scores = {
   Enforcer: 0,
   Softie: 0,
@@ -83,15 +158,22 @@ let scores = {
   Fixer: 0
 };
 
-function showQuestion() {
+function startQuiz(){
+  document.getElementById("home").style.display = "none";
+  document.getElementById("quiz").style.display = "block";
+  showQuestion();
+}
+
+function showQuestion(){
   if(index >= questions.length){
     showResult();
     return;
   }
 
   let html = `<h2>${questions[index]}</h2>`;
-  ["A","B","C","D"].forEach((letter, i) => {
-    html += `<button onclick="choose('${letter}')">${letter}. ${options[index][i]}</button><br>`;
+
+  ["A","B","C","D"].forEach((letter,i)=>{
+    html += `<button onclick="choose('${letter}')">${letter}. ${options[index][i]}</button>`;
   });
 
   document.getElementById("quiz").innerHTML = html;
@@ -108,7 +190,7 @@ function choose(letter){
 }
 
 function showResult(){
-  let maxType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+  let maxType = Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
 
   let results = {
     Enforcer: {
@@ -133,20 +215,19 @@ function showResult(){
     }
   };
 
-  let result = results[maxType];
-  let html = `
+  let r = results[maxType];
+
+  document.getElementById("quiz").style.display = "none";
+
+  document.getElementById("result").innerHTML = `
     <div class="result-card">
-      <img src="${result.image}" alt="${maxType}" class="result-image">
-      <h2>${result.title}</h2>
-      <p>${result.description}</p>
+      <img src="${r.image}" class="result-image">
+      <h2>${r.title}</h2>
+      <p>${r.description}</p>
     </div>
   `;
-
-  document.getElementById("quiz").innerHTML = "";
-  document.getElementById("result").innerHTML = html;
 }
 
-showQuestion();
 </script>
 
 </body>
