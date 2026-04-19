@@ -104,49 +104,144 @@ h2 { font-size: 16px; }
 <script>
 
 const questions = [
-"1. A student is talking while you are teaching. What do you do?",
-"2. A student forgets homework.",
-"3. A student is upset in class.",
-"4. Your classroom management style is:",
-"5. A student breaks a rule.",
-"6. Students are noisy during group work.",
-"7. You prefer lessons to be:",
-"8. A student is struggling academically.",
-"9. You react to late submissions by:",
-"10. A student challenges your authority.",
-"11. Classroom rules should be:",
-"12. A student is distracted.",
-"13. You deal with conflict by:",
-"14. You see your role as:",
-"15. Students respect you because:",
-"16. When giving feedback:",
-"17. You handle misbehavior by:",
-"18. You prioritise:",
-"19. Your classroom atmosphere is:",
-"20. Your ideal student is:"
+"1. A student still hasn’t handed in their homework. You…",
+"2. The class goes completely silent after you ask a question. You…",
+"3. Two students in the back are having a full podcast episode. You…",
+"4. A student asks, “Do we actually need to know this?” You…",
+"5. A parent emails you at 10:47 pm. You…",
+"6. The projector stops working during an observation. You…",
+"7. A student asks to go to the toilet five minutes into class. You…",
+"8. Group work starts, and one student immediately becomes decorative. You…",
+"9. Halfway through the lesson, you realise nobody knows what’s going on. You…",
+"10. You catch a student on their phone in class. You…",
+"11. There’s an observation tomorrow and your lesson still feels messy. You…",
+"12. A student gives an answer so off-topic it feels like experimental theatre. You…",
+"13. The class has the energy of a haunted waiting room. You…",
+"14. A student apologises and says they’re really trying. You…",
+"15. At the end of a long day, someone says, “Quick question…” You…",
+"16. A lesson goes badly. Your first thought is…",
+"17. A student keeps testing boundaries. You…",
+"18. You’re covering a class you’ve never taught before. You…",
+"19. It’s one of those weeks. Your survival strategy is…",
+"20. Your classroom presence is best described as…"
 ];
 
 const options = [
-["Warning", "Ignore", "Silent stare", "Talk later"],
-["Penalty", "Excuse", "Disappointed", "Help"],
-["Send out", "Comfort", "Observe", "Solve"],
-["Strict", "Relaxed", "Firm silent", "Supportive"],
-["Consequence", "Second chance", "Eye contact", "Discuss"],
-["Stop class", "Let it go", "Stare", "Redirect"],
-["Structured", "Flexible", "Calm", "Interactive"],
-["Push harder", "Encourage", "Observe", "Support"],
-["Strict deadline", "Flexible", "Judgement", "Help"],
-["Authority", "Calm", "Stare", "Fix"],
-["Strict", "Flexible", "Implied", "Practical"],
-["Call out", "Ignore", "Stare", "Refocus"],
-["Enforce", "Peace", "Silent", "Solve"],
-["Authority", "Mentor", "Observer", "Fixer"],
-["Strict", "Kind", "Intimidating", "Helpful"],
-["Critical", "Positive", "Minimal", "Constructive"],
-["Punish", "Forgive", "Stare", "Guide"],
-["Discipline", "Wellbeing", "Control", "Improvement"],
-["Orderly", "Warm", "Quiet", "Supportive"],
-["Rule follower", "Comfortable", "Quiet", "Improving"]
+["deliver a courtroom speech on responsibility that could briefly qualify as public policy",
+"say, “Okay, what’s going on?” like this isn’t your fourth emotional rescue mission of the day",
+"stare at them until their conscience boots up",
+"produce a catch-up sheet, a backup task, and a recovery plan like you’ve been waiting for this nonsense to happen"
+],
+["start cold-calling like the right to remain silent has been revoked",
+"smile kindly and rephrase the question as if the room hasn’t just spiritually abandoned you",
+"say, “I can wait,” and let the silence evolve into a sentient being",
+"pivot into pair discussion so fast the awkwardness doesn’t have time to put shoes on"
+],
+["stop the lesson and cancel the production company",
+"float over with a gentle “Everything alright over here?” like a deeply tired youth counsellor",
+"stand near them and let shame enter the chat",
+"assign them a job before episode two gets commissioned"
+],
+["deliver a monologue so intense it feels like the curriculum has taken human form",
+"answer kindly because somewhere inside you, optimism is still on life support",
+"pause, because the little menace has a point",
+"invent a practical example on the spot and drag the lesson back from the cliff edge"
+],
+["read the subject line, close the app, and let tomorrow’s contractual hours deal with it",
+"reply kindly because your boundaries continue to be theoretical",
+"stare into the abyss and draft seventeen responses telepathically",
+"identify the actual issue, send a three-line solution, and remove it from active memory"
+],
+
+["continue as if this stripped-back approach was your educational vision all along",
+"laugh softly, reassure everyone, and keep smiling through the internal house fire",
+"look at the projector like betrayal now has a physical form",
+"launch Plan B so quickly it looks premeditated"
+],
+
+["say no, because this lesson is not becoming a train station",
+"say yes, but with the energy of a Victorian mother sending someone to war",
+"nod once in a way that still somehow feels like a warning",
+"wave them off because this issue is ranking below “printer jam” on today’s crisis list"
+],
+
+["assign roles with the speed and authority of someone ending a minor coup",
+"gently invite them back into the land of the contributing",
+"make eye contact and let them feel judged by history itself",
+"restructure the task so freeloading becomes a logistical nightmare"
+],
+
+["stop everything because we are not continuing this academic hallucination",
+"reassure the class and explain it again like the patron saint of second chances",
+"continue calmly while your soul opens a confidential investigation",
+"strip the task down to its bones and rebuild it in real time like a classroom mechanic"
+],
+
+["deal with it immediately because chaos feeds on hesitation",
+"give them a soft disappointed reminder like a kind but exhausted aunt",
+"give them a look that says, “Don’t drag me into whatever this is.”",
+"redirect them into the task so efficiently the phone loses plot relevance"
+],
+
+["rebuild half of it at an hour usually associated with poor life choices and medical staff",
+"tidy what you can, preserve the heart, and trust warmth to carry the rest over the finish line",
+"stare at the planning doc until either clarity arrives or your spirit leaves",
+"cut, patch, simplify, and force the lesson into functionality with spreadsheet-level aggression"
+],
+
+["redirect immediately before the lesson crosses international borders",
+"find something encouraging in it because every baffling answer is also, somehow, a bid for love",
+"pause and let the room process the event",
+"snatch the one useful idea out of the rubble and rebuild the moment around it"
+],
+
+["tighten the pace and proceed like morale is optional",
+"warm the room up gently like an emotional air fryer",
+"accept the cursed atmosphere and teach through it like an underpaid gothic governess",
+"switch activities immediately because this one is deceased and you are not writing the eulogy"
+],
+
+["accept the apology, keep the consequence, and let structure do the parenting",
+"melt on impact because one sincere sentence can apparently still defeat you",
+"nod in a way that says, “This matter is closed, but not forgotten by the archives.”",
+"accept it, then immediately build an actual support plan like the situation has entered triage"
+],
+
+["stop and answer properly because standards are standards even at the edge of collapse",
+"say, “Of course!” while your soul quietly applies for leave",
+"turn slowly like a government-issued ghost",
+"solve the issue in thirty seconds flat and continue packing like a field surgeon"
+],
+
+["expectations were not met and that will be entering the official record",
+"oh no. did everyone feel awful. including me. especially me",
+"interesting. catastrophic, but interesting",
+"right, what exploded, what survived, and how do I stop the director ordering a sequel"
+],
+
+["make the expectations so clear they could be seen from low earth orbit",
+"try a calm private conversation because perhaps there is, against all odds, a reason",
+"watch, wait, and choose your moment like a nature documentary with funding cuts",
+"change the seat, task, grouping, routine, and if needed the entire ecosystem"
+],
+
+["establish order first and let affection submit an application later",
+"win them over gently and pray goodwill can be converted into compliance",
+"walk in calm, unreadable, and just unsettling enough to discourage innovation",
+"assess the room in five seconds and adapt like a substitute-teacher cryptid"
+],
+
+["lists, structure, and refusing to have a visible breakdown in a building with witnesses",
+"kindness, coffee, and checking on everyone else while personally dissolving like soft chalk",
+"fewer words, more staring, and the careful rationing of what remains of your humanity",
+"triage, shortcuts, backup plans, and vibes that would absolutely fail an audit"
+],
+
+["clear, direct, and spiritually subscribed to the phrase “absolutely not.”",
+"warm, steady, and one heartfelt apology away from rearranging the universe for someone",
+"calm, unreadable, and mildly apocalyptic in an oddly effective way",
+"adaptable, competent, and powered by caffeine, instincts, and suspiciously illegal levels of momentum"
+]
 ];
 
 let index = 0;
